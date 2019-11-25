@@ -18,7 +18,7 @@ RED = '\033[91m'
 stop = False
 DEBUG = True
 
-address = ('192.168.43.103', 6006)
+address = ('10.42.0.1', 6006)
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind(address)
 
