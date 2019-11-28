@@ -68,11 +68,14 @@ void loop() {
   if (rightPin == 0 && PrevrightPin == 1){
     sendUdpMessage("R_RIGHT");
   }
-
   if(shootPin == 1)  {
-    sendUdpMessage("FIRE");
+    sendUdpMessage("P_FIRE");
+  }else {
+ sendUdpMessage("R_FIRE");
+    
   }
   
+
 
   Serial.print(leftPin);
   Serial.print("-----");
