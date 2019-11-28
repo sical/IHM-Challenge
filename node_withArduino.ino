@@ -8,6 +8,8 @@ WiFiServer server(6006);
 WiFiUDP Udp;
 IPAddress ip(10,42,0,1);             //IP to send UDP packets to
 
+int savePin = 1; // D1
+
 int leftPin = 0;
 int rightPin = 0;
 
@@ -42,6 +44,8 @@ void setup() {
   pinMode(D6, INPUT);
   
   pinMode(D2, INPUT); //SHOOT
+
+  pinMode(D1, INPUT);
   
 }
 
@@ -52,6 +56,7 @@ void loop() {
   leftPin = digitalRead(D5);
   rightPin = digitalRead(D6);
   shootPin = digitalRead(D2);
+  savePin = digitalRead(D1);
 
   if (leftPin == 1 && PrevleftPin == 0){
     sendUdpMessage("P_LEFT");
@@ -72,6 +77,10 @@ void loop() {
   if(shootPin == 1)  {
     sendUdpMessage("FIRE");
   }
+
+  if(savePin == 0) {
+    sendUdpMessage("RESCUE");
+  }
   
 
   Serial.print(leftPin);
@@ -79,6 +88,8 @@ void loop() {
   Serial.print(rightPin);
   Serial.print("-----");
   Serial.print(shootPin);
+  Serial.print("-----");
+  Serial.print(savePin);
   Serial.print("\n");
   
   PrevleftPin = leftPin;
